@@ -1,0 +1,116 @@
+//
+   Created by SASi on 11-May-16.
+
+.modal.fade.sm-login-modal#userLoginModalLabel(tabindex="-1", role="dialog", aria-labelledby="userLoginModalLabel", ng-controller="loginController")
+    .modal-dialog.modal-lg
+        .modal-content
+            .flip-container
+                button.close(type="button", data-dismiss="modal", aria-label="Close")
+                    span(aria-hidden="true") &times;
+
+                .flipper
+                    .front
+                        .left-container
+                            h3(style="color: #fff") Left Container
+                        .right-container
+                            h3 Login
+                            .login-container
+                                .login-form
+                                    form(name="userLoginForm")
+                                        .form-group(ng-class="{ 'has-error': userLoginForm.email.$touched && userLoginForm.email.$invalid }")
+                                            input.form-control(type="email", name="email", placeholder="Email", ng-model="email", required)
+                                            ng-messages(role="alert", for="userLoginForm.email.$error", ng-show="userLoginForm.email.$touched")
+                                                ng-message.text-danger(when="required") Email is required
+                                                ng-message.text-danger(when="email") Invalid email address
+
+                                        .form-group(ng-class="{ 'has-error': userLoginForm.password.$touched && userLoginForm.password.$invalid }")
+                                            input.form-control(type="password", name="password", placeholder="Password", ng-model="password", ng-minlength="8"
+                                            ng-maxlength="20", required)
+                                            ng-messages(role="alert", for="userLoginForm.password.$error", ng-show="userLoginForm.password.$touched")
+                                                ng-message.text-danger(when="required") Please enter your name
+                                                ng-message.text-danger(when="minlength") Password must contain 8 characters
+                                                ng-message.text-danger(when="maxlength") Password not more than 20 characters
+
+                                        button.btn.btn-primary(type="button", ng-click="login()", ng-disabled="userLoginForm.$invalid") Login
+
+                                        .progress(ng-show="isMakingAjaxCall")
+                                            .progress-bar.progress-bar-success.progress-bar-striped.active#loginProgress(role="progressbar", aria-valuenow="100", aria-valuemin="0", aria-valuemax="100", style="width:100%")
+
+                                p.text-danger(ng-show="login_error") {{login_error}}
+
+                                .text-line-through
+                                    span OR
+
+                                //.social-buttons
+                                    button.btn.btn-primary.fb(type="button")
+                                        i.fa.fa-facebook.icon-left
+                                        | Facebook
+
+                                    button.btn.btn-primary.gplus(type="button")
+                                        i.fa.fa-google-plus.icon-left
+                                        | Google Plus
+
+                                .more-link
+                                    a.btn.btn-link(type="button") Forgot Password ?
+                                    a.btn.btn-link(type="button" ng-click="toggleLoginView()") Need Account ? Register
+
+
+                    .back
+                        .left-container
+                            h3(style="color: #fff") Left Container
+                        .right-container
+                            h3 Registration
+                            .login-container
+                                .login-form
+                                    form(name="userRegistrationForm")
+                                        .form-group(ng-class="{ 'has-error': userRegistrationForm.name.$touched && userRegistrationForm.name.$invalid }")
+                                            input.form-control(type="text", name="name", placeholder="Full Name", ng-model="name", required)
+                                            ng-messages(role="alert", for="userRegistrationForm.name.$error", ng-show="userRegistrationForm.name.$touched")
+                                                ng-message.text-danger(when="required") Name is required
+                                        .form-group(ng-class="{ 'has-error': userRegistrationForm.email.$touched && userRegistrationForm.email.$invalid }")
+                                            input.form-control(type="email", name="email", placeholder="Email", ng-model="email", required)
+                                            ng-messages(role="alert", for="userRegistrationForm.email.$error", ng-show="userRegistrationForm.email.$touched")
+                                                ng-message.text-danger(when="required") Email is required
+                                                ng-message.text-danger(when="email") Invalid email address
+                                        .form-group(ng-class="{ 'has-error': userRegistrationForm.mobile.$touched && userRegistrationForm.mobile.$invalid }")
+                                            input.form-control(type="number", name="mobile", placeholder="Mobile", ng-model="mobile", ng-minlength="10"
+                                            ng-maxlength="10", required)
+                                            ng-messages(role="alert", for="userRegistrationForm.mobile.$error", ng-show="userRegistrationForm.mobile.$touched")
+                                                ng-message.text-danger(when="required") Mobile number is required
+                                                ng-message.text-danger(when-exp="['minlength', 'maxlength']") Invalid Mobile number
+                                        .form-group(ng-class="{ 'has-error': userRegistrationForm.password.$touched && userRegistrationForm.password.$invalid }")
+                                            input.form-control(type="password", name="password", placeholder="Password", ng-model="password", ng-minlength="8"
+                                            ng-maxlength="20", required)
+                                            ng-messages(role="alert", for="userRegistrationForm.password.$error", ng-show="userRegistrationForm.password.$touched")
+                                                ng-message.text-danger(when="required") Please enter your name
+                                                ng-message.text-danger(when="minlength") Password must contain 8 characters
+                                                ng-message.text-danger(when="maxlength") Password not more than 20 characters
+                                        .form-group(ng-class="{ 'has-error': userRegistrationForm.confirmPassword.$touched && userRegistrationForm.confirmPassword.$invalid }")
+                                            input.form-control(type="password", name="confirmPassword", placeholder="Confirm Password", ng-minlength="8"
+                                            ng-maxlength="20", ng-model="confirmPassword", required)
+                                            ng-messages(role="alert", for="userRegistrationForm.confirmPassword.$error", ng-show="userRegistrationForm.confirmPassword.$touched")
+                                                ng-message.text-danger(when="required") Please enter your name
+                                                ng-message.text-danger(when="minlength") Password must contain 8 characters
+                                                ng-message.text-danger(when="maxlength") Password not more than 20 characters
+
+                                        button.btn.btn-primary(type="button", ng-click="register()", ng-disabled="userRegistrationForm.$invalid") Register
+
+                                        .progress(ng-show="isMakingAjaxCall")
+                                            .progress-bar.progress-bar-success.progress-bar-striped.active#registerProgress(role="progressbar", aria-valuenow="100", aria-valuemin="0", aria-valuemax="100", style="width:100%")
+
+                                p.text-danger(ng-show="register_error") {{register_error}}
+                                .text-line-through
+                                    span OR
+
+                                //.social-buttons
+                                    button.btn.btn-primary.fb(type="button")
+                                        i.fa.fa-facebook.icon-left
+                                        | Facebook
+
+                                    button.btn.btn-primary.gplus(type="button")
+                                        i.fa.fa-google-plus.icon-left
+                                        | Google Plus
+
+
+                                .more-link
+                                    a.btn.btn-link(type="button", ng-click="toggleLoginView()") Existing User ? Login

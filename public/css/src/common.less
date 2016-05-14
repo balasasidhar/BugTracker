@@ -1,0 +1,176 @@
+body {
+  background: #F9F9F9;
+}
+
+.navbar {
+  border-radius: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+
+  .navbar-header {
+    img {
+      display: inline-block;
+      margin-right: 6px;
+      margin-top: -3px;
+    }
+  }
+}
+
+.icon-right {
+  margin-left: 6px;
+}
+
+.icon-left {
+  margin-right: 6px;
+}
+
+.carousel-control {
+  &.left, &.right {
+    background: none;
+  }
+  .fa {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+  }
+
+  &.offers {
+    width: 50px;
+    height: 100px;
+    background: #000;
+    opacity: 0.3;
+    margin: 0 6px;
+    top: 32%;
+    .fa {
+      top: 48%;
+      color: #fff;
+    }
+    &.left {
+      .fa {
+        left: 20px;
+      }
+    }
+    &.right {
+      .fa {
+        left: 22px;
+      }
+    }
+  }
+}
+
+.fa {
+  font-size: 14px;
+}
+
+.form-control {
+  border-radius: 0;
+  outline: none;
+  .no-box-shadow;
+  border-color: #ccc;
+  &:focus, &:active {
+    .no-box-shadow;
+    border-color: #ccc;
+  }
+}
+
+.navbar-form {
+  width: 100%;
+}
+
+//.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover,
+//.navbar-default .navbar-nav > .open > a:focus {
+//  background: transparent;
+//}
+
+.card {
+  min-height: 80px;
+  width: 100%;
+  padding: 10px;
+  overflow: hidden;
+  border-left: 1px solid #eee;
+  border-top: 1px solid #eee;
+  background: #fff;
+  border-radius: 4px;
+  .box-shadow;
+  img {
+    width: 100%;
+  }
+  &.filters {
+    padding: 15px 20px;
+  }
+}
+
+.list-vertical {
+  li {
+    display: inline-block;
+  }
+}
+
+.listings {
+  li {
+    margin: 4px;
+    .card {
+      text-align: center;
+      width: 220px;
+      height: 276px;
+      cursor: pointer;
+      //font-weight: 600;
+      .divider {
+        width: 20px;
+        border-bottom: 1px solid;
+        margin: 5px auto;
+      }
+      img {
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+.text-line-through {
+  line-height: 0.5;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  span {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    //font-weight: 600;
+    text-transform: uppercase;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      border-bottom: 1px solid @text-secondary;
+      //border-top: 1px solid @text-secondary;
+      top: 0;
+      width: 150px;
+    }
+    &:before {
+      right: 100%;
+      margin-right: 15px;
+    }
+    &:after {
+      left: 100%;
+      margin-left: 15px;
+    }
+  }
+  p {
+    margin-top: 20px;
+    color: @text-primary;
+    opacity: 0.5;
+  }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

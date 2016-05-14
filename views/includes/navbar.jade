@@ -1,0 +1,42 @@
+//
+   Created by SASi on 14-May-16.
+
+nav.navbar.navbar-default
+    .container
+        .navbar-header
+            a.navbar-brand(href="/")
+                img(src="/img/cloud_computing.png")
+                | #4D656E Debugger
+
+        ul.nav.navbar-nav.navbar-right
+            li: a(href="#") Documentation
+            li: a(href="#") API
+            li: a(href="#") Help
+            li: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token",ng-click="showLoginView()") Login
+            li: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token", ng-click="showRegisterView()") Register
+            li.dropdown
+                a.dropdown-toggle(href="#", ng-show= "auth_token", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+                    |   {{name}}
+                    span.caret.icon-right
+                ul.dropdown-menu
+                    li
+                        a(href="dashboard")
+                            i.fa.fa-laptop.icon-left(aria-hidden="true")
+                            | Dashboard
+                    li
+                        a(href="profile")
+                            i.fa.fa-user.icon-left(aria-hidden="true")
+                            | My Profile
+                    li
+                        a(href="profile")
+                            i.fa.fa-plus.icon-left(aria-hidden="true")
+                            | New Project
+                    li
+                        a(href="profile")
+                            i.fa.fa-list.icon-left(aria-hidden="true")
+                            | My Projects
+                    li.divider
+                    li
+                        a(href="profile")
+                            i.fa.fa-sign-out.icon-left(aria-hidden="true")
+                            | Logout

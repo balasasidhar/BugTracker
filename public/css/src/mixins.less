@@ -1,0 +1,45 @@
+.box-shadow(@h:0,@v:2px,@b:4px,@s:0,@color: rgba(0,0,0,0.08)) {
+  -webkit-box-shadow: @h @v @b @s @color;
+  -moz-box-shadow: @h @v @b @s @color;
+  box-shadow: @h @v @b @s @color;
+}
+
+.no-box-shadow() {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.transitions(@prop: all, @dur:0.2s, @anim: ease-in-out) {
+  -webkit-transition: @prop @dur @anim;
+  -moz-transition: @prop @dur @anim;
+  -ms-transition: @prop @dur @anim;
+  -o-transition: @prop @dur @anim;
+  transition: @prop @dur @anim;
+}
+
+.user-select() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.arrow-up(@width: 5px, @color: #000) {
+  width: 0;
+  height: 0;
+  border-left: @width solid transparent;
+  border-right: @width solid transparent;
+  border-bottom: @width solid @color;
+}
+
+.material-button(@color: @app-primary) {
+  background-color: @color;
+  outline-color: @color;
+  &:active {
+    background-color: darken(@color, 10%);
+    background-image: radial-gradient(circle, darken(@color, 10%) 10%, darken(@color, 5%) 11%);
+    -webkit-background-size: 1000% 1000%;
+    background-size: 1000%;
+  }
+}
