@@ -3,8 +3,8 @@
  */
 
 app.controller('logoutPageController', ['$rootScope', '$cookies', function ($rootScope, $cookies) {
-    $rootScope.isLoggedIn = false;
-    $rootScope.authToken = null;
-    $cookies.remove('authToken');
+    $rootScope.auth_token = null;
+    $cookies.remove('auth_token');
+    $cookies.remove('user');
     window.location.href = "/";
 }]);

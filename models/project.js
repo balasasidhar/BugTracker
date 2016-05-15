@@ -12,6 +12,14 @@ const ProjectSchema = new Schema({
     description: {
         type: String
     },
+    reports: [{type: Schema.ObjectId, ref: 'Error'}],
+    configuration: {
+        emailsConfigured: [String],
+        slackConfiguration: {
+            api_key: String,
+            channel_name: String
+        }
+    },
     created_at: {
         type: Date,
         default: Date.now

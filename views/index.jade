@@ -1,4 +1,5 @@
 doctype html
+
 html(lang="en", data-ng-app="Opinio")
     head
         meta(charset="utf-8")
@@ -9,6 +10,8 @@ html(lang="en", data-ng-app="Opinio")
         base(href="/")
 
         link(rel='stylesheet', href='/css/lib/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/lib/jquery-ui.min.css')
+        link(rel="stylesheet", href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
         link(rel='stylesheet', href='/css/style.css')
 
@@ -18,8 +21,8 @@ html(lang="en", data-ng-app="Opinio")
 
         ng-view
 
-
         script(src="/js/lib/jquery-1.12.3.min.js")
+        script(src="/js/lib/jquery-ui.min.js")
         script(src="/js/lib/bootstrap.min.js")
         script(src="/js/lib/angular.min.js")
         script(src="/js/lib/angular-animate.min.js")
@@ -28,13 +31,19 @@ html(lang="en", data-ng-app="Opinio")
         script(src="/js/lib/angular-messages.min.js")
         script(src="/js/lib/angular-route.min.js")
         script(src="/js/lib/angular-resource.min.js")
+        script(src="/js/lib/angular-drag-and-drop-lists.min.js")
 
         script(src="/js/script.js")
         script(src="/js/app/app.js")
         script(src="/js/app/factories/factories.js")
 
         script(src="/js/app/controllers/home-controller.js")
-        script(src="/js/app/controllers/about-controller.js")
+        script(src="/js/app/controllers/dashboard-controller.js")
         script(src="/js/app/controllers/login-controller.js")
         script(src="/js/app/controllers/logout-controller.js")
-        script(src="/js/app/controllers/account-verify-controller.js")
+        script(src="/js/app/controllers/my-projects-controller.js")
+        script(src="/js/app/controllers/new-project-controller.js")
+        script(src="/js/app/controllers/edit-project-controller.js")
+
+        script(type="text/javascript").
+            bugTracker.start("57380dd0f402e59c3410d9f3");

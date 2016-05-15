@@ -48,9 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // routes
-app.use('/api', apiRoutes);
+app.use('/api', expressJWT({secret: secret}).unless({path: ['/api/report', '/api/user/login', '/api/user/register']}), apiRoutes);
 app.all('*', viewRoutes);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

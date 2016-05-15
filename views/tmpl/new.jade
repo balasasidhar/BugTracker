@@ -1,0 +1,91 @@
+//
+   Created by SASi on 14-May-16.
+
+.new-project-wrapper
+    .container-fluid
+        .row
+            .col-lg-2
+                include ../includes/sidebar
+            .col-lg-8
+                ul.nav.nav-pills.nav-justified
+                    li.active#step-one: a(data-target="#newProject", data-slide-to="0")
+                        | 1.
+                        |  Create Project
+                    li.disabled#step-two: a
+                        | 2.
+                        |  Configure your Web App
+                    li.disabled#step-three: a
+                        | 3.
+                        |  Add Cards
+
+                .carousel.slide#newProject(data-interval="false")
+                    .carousel-inner
+                        .item.active
+                            .card.centerXY#card-one
+                                form(name="projectForm")
+                                    .form-group(ng-class="{ 'has-error': projectForm.title.$touched && projectForm.title.$invalid }")
+                                        label.control-label Project Title
+                                        input.form-control(type="text", required, placeholder="Project title", name="title", ng-model="title")
+                                        ng-messages(role="alert", for="projectForm.title.$error", ng-show="projectForm.title.$touched")
+                                            ng-message.text-danger(when="required") * Project title is required
+                                    .form-group
+                                        label.control-label Project Description
+                                        textarea.form-control(rows="2", cols="30", ng-model="description")
+
+                                    a.btn.btn-primary.btn-block(href="#", ng-click="saveProject()", ng-disabled="projectForm.$invalid") {{buttonText}}
+                        .item
+                            .card.centerXY#card-two
+                                pre
+                                    | &ltscript src="https://code.jquery.com/jquery-1.12.3.min.js"&gt &lt/script&gt
+                                    | &ltscript src="debugger.min.js"&gt &lt/script&gt
+                                    | &ltscript src="text/javascript"&gt bugTracker.start("{{project._id}}") &lt/script&gt
+                                p.text-info
+                                    | Copy & paste above code snippet into the &lthead&gt tag of all your html pages.
+                                p.text-warning Please make sure that you add it before other script tags as well.
+                                .col-lg-2
+                                    a.btn.btn-primary.btn-block(href="#", ng-click="moveToFinish()") Next
+                        .item
+                            .card#card-three
+                                .row
+                                    .col-lg-4
+                                        h5.page-header.text-center Error Details
+                                        ul.errors-list#error-log
+                                            li Error Type
+                                            li Error Message
+                                            li URL
+                                            li Line Number
+                                            li Column Number
+                                            li Stack Trace
+                                            li Browser Details
+                                            li Operating System
+                                            li Timestamp
+                                    .col-lg-8
+                                        h5.page-header.text-center Integrated Services
+                                        .col-lg-6.col-lg-offset-3
+                                            ul.services-list
+                                                li
+                                                    img(src="./img/logos/email.png")
+                                                    h5 EMail
+                                                    label.switch.pull-right
+                                                        input(type="checkbox", ng-model="isEmailConfigured", ng-change="showEmailConfig()")
+                                                        .slider.round
+                                                li
+                                                    img(src="./img/logos/trello.png")
+                                                    h5 Trello
+                                                    label.switch.pull-right
+                                                        input#trello(type="checkbox")
+                                                        .slider.round
+                                                li
+                                                    img(src="./img/logos/slack.png")
+                                                    h5 Slack
+                                                    label.switch.pull-right
+                                                        input(type="checkbox",ng-model="isSlackConfigured", ng-change="showSlackConfig()")
+                                                        .slider.round
+
+
+                                        .col-lg-4.col-lg-offset-4
+                                            button.btn.btn-primary.btn-block(ng-click="saveProject()") Save
+    include ../includes/email-modal
+    include ../includes/slack-modal
+
+

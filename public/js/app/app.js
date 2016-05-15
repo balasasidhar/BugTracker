@@ -45,11 +45,23 @@ app.config([
             })
             .when('/dashboard', {
                 templateUrl: 'tmpl/dashboard',
-                controller: 'aboutPageController'
+                controller: 'dashboardPageController'
             })
-            .when('/about', {
-                templateUrl: 'tmpl/about',
-                controller: 'aboutPageController'
+            .when('/new', {
+                templateUrl: 'tmpl/new',
+                controller: 'newProjectsPageController'
+            })
+            .when('/edit/:id', {
+                templateUrl: 'tmpl/new',
+                controller: 'editProjectsPageController'
+            })
+            .when('/projects', {
+                templateUrl: 'tmpl/projects',
+                controller: 'myProjectsPageController'
+            })
+            .when('/profile', {
+                templateUrl: 'tmpl/profile',
+                controller: 'myProjectsPageController'
             })
             .when('/logout', {
                 template: '',

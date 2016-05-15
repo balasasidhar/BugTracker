@@ -1,0 +1,25 @@
+//
+   Created by SASi on 15-May-16.
+.modal.fade.sm-slack-modal#slackModal(tabindex="-1", role="dialog", aria-labelledby="slackModalLabel")
+    .modal-dialog.modal-md
+        .modal-content
+            .modal-header
+                button.close(type="button", data-dismiss="modal", aria-label="Close")
+                    span(aria-hidden="true") &times;
+                h4
+                    .modal-title Slack
+
+            .modal-body
+                form(name="configSlackFrom")
+                    .form-group
+                        label.control-label API Key
+                        input.form-control(type="text", ng-model="slackAPIKey")
+                    .form-group
+                        label.control-label Channel Name
+                        input.form-control(type="text", ng-model="slackChannelName")
+
+            .modal-footer
+                button.btn.btn-default(type="button", data-dismiss="modal") Close
+
+
+

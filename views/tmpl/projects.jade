@@ -1,0 +1,27 @@
+//
+   Created by SASi on 14-May-16.
+
+.projects-wrapper
+    .container-fluid
+        .row
+            .col-lg-2
+                include ../includes/sidebar
+
+            .col-lg-8
+
+                .card(ng-repeat="project in projectsList")
+                    .commands
+                        a.text-success(ng-href="edit/{{project._id}}")
+                            i.fa.fa-pencil.icon-left(aria-hidden="true")
+                            | Edit
+                        a.text-danger(href="#", ng-click="deleteProject(project)")
+                            i.fa.fa-trash-o.icon-left(aria-hidden="true")
+                            | Delete
+                    h5.page-header
+                        | {{project.title}}
+                    p.description
+                        | {{project.description}}
+                    .api-key
+                        p API Key
+                        pre
+                            | {{project._id}}
