@@ -14,6 +14,9 @@
                         a.text-success(ng-href="edit/{{project._id}}")
                             i.fa.fa-pencil.icon-left(aria-hidden="true")
                             | Edit
+                        a.text-warning(ng-href="edit/{{project._id}}")
+                            i.fa.fa-bug.icon-left(aria-hidden="true")
+                            | Bug Reports
                         a.text-danger(href="#", ng-click="deleteProject(project)")
                             i.fa.fa-trash-o.icon-left(aria-hidden="true")
                             | Delete
