@@ -17,8 +17,8 @@ module.exports = (function () {
 
     const uuid = global.uuid;
 
-    const mail_gun_api_key = 'key-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-    var domain = 'yourdomain.mailgun.org';
+    const mail_gun_api_key = 'key-xxxxxxxxxxxxx';  // replace with mail gun API Key
+    var domain = 'mydomain.mailgun.org'; // replace with mail gun Domain
     var mailgun = require('mailgun-js')({apiKey: mail_gun_api_key, domain: domain});
 
     /** Register new user*/

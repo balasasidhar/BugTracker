@@ -33,15 +33,16 @@ app.controller('editProjectsPageController', ['$scope', '$rootScope', '$routePar
             $scope.project = response;
             $scope.title = response.title;
             $scope.description = response.description;
-            $scope.emails = response.configuration.emailsConfigured.toString();
 
-            $scope.slackAPIKey = response.configuration.slackConfiguration.api_key;
-            $scope.slackChannelName = response.configuration.slackConfiguration.channel_name;
+            $scope.emails = response.configuration.emailsConfigured.toString() || null;
+            var slackConfiguration = response.configuration.slackConfiguration;
 
             if ($scope.emails)
                 $scope.isEmailConfigured = true;
 
-            if ($scope.slackAPIKey && $scope.slackChannelName) {
+            if (slackConfiguration) {
+                $scope.slackAPIKey = slackConfiguration.api_key;
+                $scope.slackChannelName = slackConfiguration.channel_name;
                 $scope.isSlackConfigured = true;
             }
         }, function (err) {

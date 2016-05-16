@@ -69,7 +69,6 @@ var bugTracker = {
             };
             self.sendReport(errorReport);
         }
-
     }
 };
 
