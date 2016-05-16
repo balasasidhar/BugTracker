@@ -59,6 +59,10 @@ app.config([
                 templateUrl: 'tmpl/projects',
                 controller: 'myProjectsPageController'
             })
+            .when('/reports/:id', {
+                templateUrl: 'tmpl/reports',
+                controller: 'projectReportsPageController'
+            })
             .when('/profile', {
                 templateUrl: 'tmpl/profile',
                 controller: 'myProjectsPageController'

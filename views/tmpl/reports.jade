@@ -1,3 +1,27 @@
 //
    Created by SASi on 16-May-16.
 
+.projects-wrapper
+    .container-fluid
+        .row
+            .col-lg-2
+                include ../includes/sidebar
+
+            .col-lg-8
+
+                .card(ng-repeat="report in reports")
+                    //.commands
+                        a.text-warning(ng-href="reports/{{project._id}}")
+                            i.fa.fa-bug.icon-left(aria-hidden="true")
+                            | Bug Reports
+                        a.text-danger(href="#", ng-click="deleteProject(project)")
+                            i.fa.fa-trash-o.icon-left(aria-hidden="true")
+                            | Delete
+                    h5.page-header
+                        | {{report.error_message}}
+                    //p.description
+                        | {{report.stack_trace | json}}
+                    p
+                        pre
+                            code {{report | json}}
+

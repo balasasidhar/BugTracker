@@ -8,10 +8,10 @@
     .container
         .title
             img(src="/img/cloud_computing_1.png")
-            h1 #4D656E Bug Tracker
-            h3 A simple JS Library
+            h1 Bug Tracker
+            h3 A simple JS Library which Tracks your Front-End JS Errors
 
-        button.btn.btn-default(data-toggle="modal", data-target="#userLoginModalLabel", ng-click="showRegisterView()") Register
+        button.btn.btn-default(data-toggle="modal", ng-show="!auth_token", data-target="#userLoginModalLabel", ng-click="showRegisterView()") Register
 
 
 include ../includes/login-modal

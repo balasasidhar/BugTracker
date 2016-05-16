@@ -14,30 +14,21 @@ app.factory('Login', ['$resource', function ($resource) {
     return $resource(apiPrefix + '/user/login');
 }]);
 
-app.factory('Projects', ['$resource', '$rootScope', function ($resource, $rootScope) {
+app.factory('Projects', ['$resource', '$rootScope', function ($resource) {
     return (
         $resource(apiPrefix + '/project/:id', {id: '@id'}, {
-            query: {
-                method: 'GET',
-                isArray: true,
-                headers: {Authorization: "Bearer " + $rootScope.auth_token}
-            },
-            get: {
-                method: 'GET',
-                isArray: false,
-                headers: {Authorization: "Bearer " + $rootScope.auth_token}
-            },
-            save: {
-                method: 'POST',
-                headers: {Authorization: "Bearer " + $rootScope.auth_token}
-            },
             update: {
-                method: 'PUT',
-                headers: {Authorization: "Bearer " + $rootScope.auth_token}
-            },
-            delete: {
-                method: 'DELETE',
-                headers: {Authorization: "Bearer " + $rootScope.auth_token}
+                method: 'PUT'
+            }
+        })
+    );
+}]);
+
+app.factory('Reports', ['$resource', '$rootScope', function ($resource) {
+    return (
+        $resource(apiPrefix + '/reports/:id', {id: '@id'}, {
+            update: {
+                method: 'PUT'
             }
         })
     );

@@ -41,9 +41,11 @@ app.controller('editProjectsPageController', ['$scope', '$rootScope', '$routePar
                 $scope.isEmailConfigured = true;
 
             if (slackConfiguration) {
-                $scope.slackAPIKey = slackConfiguration.api_key;
-                $scope.slackChannelName = slackConfiguration.channel_name;
-                $scope.isSlackConfigured = true;
+                $scope.slackAPIKey = slackConfiguration.api_key || null;
+                $scope.slackChannelName = slackConfiguration.channel_name || null;
+
+                if ($scope.slackAPIKey)
+                    $scope.isSlackConfigured = true;
             }
         }, function (err) {
             console.error(err.data.error);

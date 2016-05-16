@@ -18,7 +18,7 @@ const apiRoutes = require('./routes/api');
 // db config
 const dbConfig = {
     host: "localhost",
-    db: 'debugger',
+    db: 'bug_tracker',
     port: 27017
 };
 
@@ -46,9 +46,10 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const _middleware = require('./middlewares/middleware');
 
 // routes
-app.use('/api', expressJWT({secret: secret}).unless({path: ['/api/report', '/api/user/login', '/api/user/register']}), apiRoutes);
+app.use('/api', _middleware.api_middleware, expressJWT({secret: secret}).unless({path: ['/api/report', '/api/user/login', '/api/user/register']}), apiRoutes);
 app.all('*', viewRoutes);
 
 // catch 404 and forward to error handler

@@ -22,6 +22,15 @@ router.route('/project/:id')
     .get(api.getProject)
     .delete(api.deleteProject);
 
+// router.route('/reports')
+//     .post(api.addProject)
+//     .get(api.getProjects);
+
+router.route('/reports/:id')
+    .get(api.getReports)
+    .put(api.updateReport)
+    .delete(api.deleteReport);
+
 router.route('/report')
     .post(api.reportError);
 

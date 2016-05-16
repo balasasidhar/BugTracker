@@ -12,7 +12,7 @@ const ProjectSchema = new Schema({
     description: {
         type: String
     },
-    reports: [{type: Schema.ObjectId, ref: 'Error'}],
+    reports: [{type: Schema.ObjectId, ref: 'Report'}],
     configuration: {
         emailsConfigured: [String],
         slackConfiguration: {

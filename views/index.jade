@@ -14,6 +14,9 @@ html(lang="en", data-ng-app="Opinio")
         link(rel="stylesheet", href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
         link(rel='stylesheet', href='/css/style.css')
+        script(src="js/bug_tracker.js", type="text/javascript")
+        script.
+            bugTracker.start("5739b706606ee6c017413f7c");
 
     body
 
@@ -33,7 +36,6 @@ html(lang="en", data-ng-app="Opinio")
         script(src="/js/lib/angular-resource.min.js")
         script(src="/js/lib/angular-drag-and-drop-lists.min.js")
 
-        script(src="/js/script.js")
         script(src="/js/app/app.js")
         script(src="/js/app/factories/factories.js")
 
@@ -44,6 +46,4 @@ html(lang="en", data-ng-app="Opinio")
         script(src="/js/app/controllers/my-projects-controller.js")
         script(src="/js/app/controllers/new-project-controller.js")
         script(src="/js/app/controllers/edit-project-controller.js")
-
-        script(type="text/javascript").
-            bugTracker.start("57380dd0f402e59c3410d9f3");
+        script(src="/js/app/controllers/project-reports-controller.js")

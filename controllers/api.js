@@ -4,7 +4,6 @@
 
 module.exports = (function () {
 
-
     const mongoose = global.mongoose;
     const jwt = global.jwt;
     const bcrypt = global.bcrypt;
@@ -13,13 +12,13 @@ module.exports = (function () {
 
     const UserModel = require('../models/user');
     const ProjectModel = require('../models/project');
-    const ErrorsModel = require('../models/errors');
+    const ReportsModel = require('../models/reports');
 
     const uuid = global.uuid;
 
     /** replace with your mail gun api key & domain*/
-    const mail_gun_api_key = 'key-c30200eed9880cbcf5f07aa0725146a0';
-    const domain = 'sandboxb54041ce3a43476a8e0a99c7836e96f1.mailgun.org';
+    const mail_gun_api_key = 'key-xxxxxxxxxxxxxxxxxxxxx';
+    const domain = 'mydomain.mailgun.org';
 
     var mailgun = require('mailgun-js')({apiKey: mail_gun_api_key, domain: domain});
 
@@ -96,7 +95,8 @@ module.exports = (function () {
     const addProject = function (req, res) {
         var data = req.body;
 
-        var token = req.headers.authorization.replace("Bearer ", "");
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
 
         jwt.verify(token, global.secret, function (err, decoded) {
             if (err) {
@@ -112,10 +112,16 @@ module.exports = (function () {
                     if (err) {
                         res.status(400).json(err);
                     } else {
-                        res.status(200).json({
-                            _id: projectDoc._id,
-                            title: projectDoc.title,
-                            description: projectDoc.description
+                        UserModel.findByIdAndUpdate(user.id, {$push: {projects: projectDoc._id}}, function (err, doc) {
+                            if (err)
+                                console.log(err);
+                            else {
+                                res.status(200).json({
+                                    _id: projectDoc._id,
+                                    title: projectDoc.title,
+                                    description: projectDoc.description
+                                });
+                            }
                         });
                     }
                 });
@@ -125,21 +131,25 @@ module.exports = (function () {
 
     /** List projects related to an User */
     const getProjects = function (req, res) {
-        // var data = req.body;
-        var token = req.headers.authorization.replace("Bearer ", "");
+
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
 
         jwt.verify(token, global.secret, function (err, decoded) {
             if (err) {
                 res.status(401).json(err);
             } else {
                 var user = decoded;
-                ProjectModel.find({email: user.email}, function (err, projects) {
-                    if (err) {
-                        res.status(400).json(err);
-                    } else {
-                        res.status(200).json(projects);
-                    }
-                }).sort('-updated_at');
+                UserModel.findById(user.id)
+                    .select('projects')
+                    .populate('projects', '-reports -configuration')
+                    .exec(function (err, projectDocs) {
+                        if (err) {
+                            res.status(400).json(err);
+                        } else {
+                            res.status(200).json(projectDocs.projects.reverse());
+                        }
+                    });
             }
         });
     };
@@ -148,7 +158,8 @@ module.exports = (function () {
     const getProject = function (req, res) {
         var id = req.params.id;
 
-        var token = req.headers.authorization.replace("Bearer ", "");
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
 
         jwt.verify(token, global.secret, function (err, decoded) {
             if (err) {
@@ -172,7 +183,9 @@ module.exports = (function () {
         var data = req.body;
         var id = req.params.id;
         var emailsConfigured = data.emailsConfigured.split(",");
-        var token = req.headers.authorization.replace("Bearer ", "");
+
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
 
         jwt.verify(token, global.secret, function (err, decoded) {
             if (err) {
@@ -197,7 +210,9 @@ module.exports = (function () {
     /** Delete a project */
     const deleteProject = function (req, res) {
         var id = req.params.id;
-        var token = req.headers.authorization.replace("Bearer ", "");
+
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
 
         jwt.verify(token, global.secret, function (err, decoded) {
             if (err) {
@@ -217,11 +232,10 @@ module.exports = (function () {
 
     const reportError = function (req, res) {
         var data = JSON.parse(req.body.report);
-
         ProjectModel.findById(data.key, function (err, project) {
             if (err) res.status(400).json(err);
             else if (project != null) {
-                var report = new ErrorsModel({
+                var report = new ReportsModel({
                     error_type: data.error_type,
                     error_message: data.error_message,
                     url: data.url,
@@ -242,15 +256,15 @@ module.exports = (function () {
                             else {
                                 res.status(200).json({message: "success"});
 
-                                var rececipients = project.configuration.emailsConfigured;
+                                var recipients = project.configuration.emailsConfigured;
 
                                 /** mail */
-                                if (!rececipients.length)
+                                if (!recipients.length)
                                     return;
                                 else {
                                     var mail_data = {
                                         from: 'Bug Tracker <no-reply@bugtracker.mailgun.org>',
-                                        to: rececipients,
+                                        to: recipients,
                                         subject: 'Bug Report',
                                         html: '<pre>' + "Project Name: " + project.title +
                                         "\nError Type: " + data.error_type + "\nError Message: " + data.error_message +
@@ -262,7 +276,7 @@ module.exports = (function () {
                                     };
 
                                     mailgun.messages().send(mail_data, function (error, body) {
-                                        console.log(body);
+                                        console.log(error);
                                     });
                                 }
 
@@ -270,26 +284,95 @@ module.exports = (function () {
                                 var slackAPIKey = project.configuration.slackConfiguration.api_key;
                                 var channelName = project.configuration.slackConfiguration.channel_name;
 
-                                var options = {
-                                    method: 'POST',
-                                    uri: 'https://slack.com/api/chat.postMessage',
-                                    form: {
-                                        token: slackAPIKey,
-                                        channel: channelName,
-                                        text: 'Bug Report : ' + JSON.stringify(data)
-                                    }
-                                };
+                                if (slackAPIKey) {
+                                    var options = {
+                                        method: 'POST',
+                                        uri: 'https://slack.com/api/chat.postMessage',
+                                        form: {
+                                            token: slackAPIKey,
+                                            channel: channelName,
+                                            text: 'Bug Report : ' + JSON.stringify(data)
+                                        }
+                                    };
 
-                                request(options, function (error, response, body) {
-                                    if (error) console.log(error);
-                                    else console.log(response);
-                                });
+                                    request(options, function (error, response, body) {
+                                        if (error) console.log(error);
+                                        else console.log(response);
+                                    });
+                                }
                             }
                         });
                     }
                 })
             } else {
                 res.status(502).json({err: "Not found"});
+            }
+        });
+    };
+
+    /** Get reports related to a project */
+    const getReports = function (req, res) {
+        var id = req.params.id;
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
+
+        jwt.verify(token, global.secret, function (err, decoded) {
+            if (err) {
+                res.status(401).json(err);
+            } else {
+                var user = decoded;
+                ProjectModel.findById(id)
+                    .select('reports')
+                    .populate('reports')
+                    .exec(function (err, reportDocs) {
+                        if (err) res.status(400).json(err);
+                        else {
+                            res.status(200).json(reportDocs.reports.reverse());
+                        }
+                    })
+            }
+        });
+    };
+
+    const updateReport = function (req, res) {
+        var id = req.params.id;
+        var data = req.body;
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
+
+        jwt.verify(token, global.secret, function (err, decoded) {
+            if (err) {
+                res.status(401).json(err);
+            } else {
+                var user = decoded;
+                ReportsModel.findByIdAndUpdate(id, {
+                    is_resolved: data.is_resolved
+                }, function (err, reportDoc) {
+                    if (err) res.status(400).json(err);
+                    else {
+                        res.status(200).json(reportDoc);
+                    }
+                });
+            }
+        });
+    };
+
+    const deleteReport = function (req, res) {
+        var id = req.params.id;
+        var cookies = req.cookies;
+        var token = cookies.auth_token;
+
+        jwt.verify(token, global.secret, function (err, decoded) {
+            if (err) {
+                res.status(401).json(err);
+            } else {
+                var user = decoded;
+                ReportsModel.findByIdAndRemove(id, function (err) {
+                    if (err) res.status(400).json(err);
+                    else {
+                        res.status(200).json({message: "success"});
+                    }
+                });
             }
         });
     };
@@ -302,7 +385,9 @@ module.exports = (function () {
         getProject: getProject,
         updateProject: updateProject,
         deleteProject: deleteProject,
-        reportError: reportError
+        reportError: reportError,
+        getReports: getReports,
+        updateReport: updateReport,
+        deleteReport: deleteReport
     }
-
 })();
