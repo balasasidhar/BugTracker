@@ -18,13 +18,13 @@
 	<li> Open browser and type <code> "http://localhost:3000" </code> </li>
 </ol>
 
-Check the below link to get Bug Tracker Library to track Front End JavaScript errors 
+Check the below link to get Bug Tracker Library to track Front End JavaScript errors <br>
 <a href="https://github.com/sasidhar678/BugTrackerLibrary"> Bug Tracker Library </a>
 
 <br> <br> 
 <h5>License</h5>
 <hr>
-<pre>
+<code>
 	The MIT License (MIT)
 	
 	Copyright (c) 2016 Bala Sasidhar Kola
@@ -35,4 +35,4 @@ Check the below link to get Bug Tracker Library to track Front End JavaScript er
 	
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-</pre>
+</code>
