@@ -14,6 +14,6 @@
 	<li> Navigate to Project root directonry and install node depencies <kbd> npm install </kbd> </li>
 	<li> Open "api.js" file under "controller" folder and replace <b> mail_gun_api_key & domain </b> with mail gun credentials and save.</li>
 	<li> Navigate back to root directory and run project by running the following command <kbd> node app.js </kbd> </li>
-	<li> Open browser and type <kbd> "http://localhost:3000" </kbd> </li>
+	<li> Open browser and type <code> "http://localhost:3000" </code> </li>
 </ol>
 
