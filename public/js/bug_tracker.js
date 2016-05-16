@@ -8,8 +8,6 @@ var bugTracker = {
     start: function (apiKey) {
         var self = this;
         self.apiKey = apiKey;
-        console.log(apiKey);
-
         self.getBrowser = function (regex) {
             var ua = navigator.userAgent, tem, M = ua.match(regex) || [];
             if (/trident/i.test(M[1])) {
@@ -38,9 +36,11 @@ var bugTracker = {
 
         self.sendReport = function (report) {
             report.key = self.apiKey;
-            $.post("http://localhost:3000/api/report", report, function (data) {
-                console.log(data);
-            })
+            var url = "http://localhost:3000/api/report"; // replace with url where you want to submit your error reports
+            var client = new XMLHttpRequest();
+            client.open("POST", url);
+            client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            client.send('report=' + JSON.stringify(report));
         };
 
         window.onerror = function (message, source, lineno, colno, errorobj) {

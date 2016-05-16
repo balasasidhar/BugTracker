@@ -36,12 +36,11 @@
                         .item
                             .card.centerXY#card-two
                                 pre
-                                    | &ltscript src="https://code.jquery.com/jquery-1.12.3.min.js"&gt &lt/script&gt
-                                    | &ltscript src="bug_tracker.js"&gt &lt/script&gt
+                                    | &ltscript src="https://raw.githubusercontent.com/sasidhar678/BugTrackerLibrary/master/bug_tracker.js"&gt &lt/script&gt
                                     | &ltscript src="text/javascript"&gt bugTracker.start("{{project._id}}") &lt/script&gt
                                 p.text-info
                                     | Copy & paste above code snippet into the &lthead&gt tag of all your html pages.
-                                p.text-warning Please make sure that you add it before other script tags as well.
+                                p.text-warning Please make sure that you add it before all other script tags as well.
                                 .col-lg-2
                                     a.btn.btn-primary.btn-block(href="#", ng-click="moveToFinish()") Next
                         .item
@@ -75,7 +74,7 @@
                                                     label.switch.pull-right
                                                         input(type="checkbox",ng-model="isSlackConfigured", ng-change="showSlackConfig()")
                                                         .slider.round
-                                                //li
+                                                li
                                                     img(src="./img/logos/trello.png")
                                                     h5 Trello
                                                     label.switch.pull-right

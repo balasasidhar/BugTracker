@@ -17,8 +17,10 @@ module.exports = (function () {
 
     const uuid = global.uuid;
 
-    const mail_gun_api_key = 'key-xxxxxxxxxxxxx';  // replace with mail gun API Key
-    var domain = 'mydomain.mailgun.org'; // replace with mail gun Domain
+    /** replace with your mail gun api key & domain*/
+    const mail_gun_api_key = 'key-c30200eed9880cbcf5f07aa0725146a0';
+    const domain = 'sandboxb54041ce3a43476a8e0a99c7836e96f1.mailgun.org';
+
     var mailgun = require('mailgun-js')({apiKey: mail_gun_api_key, domain: domain});
 
     /** Register new user*/
@@ -214,7 +216,7 @@ module.exports = (function () {
     };
 
     const reportError = function (req, res) {
-        var data = req.body;
+        var data = JSON.parse(req.body.report);
 
         ProjectModel.findById(data.key, function (err, project) {
             if (err) res.status(400).json(err);
