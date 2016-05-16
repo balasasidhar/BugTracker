@@ -19,9 +19,6 @@
 	<li> Open browser and type <code> "http://localhost:3000" </code> </li>
 </ol>
 
-Check the below link to get Bug Tracker Library to track Front End JavaScript errors <br>
-<a href="https://github.com/sasidhar678/BugTrackerLibrary"> Bug Tracker Library </a>
-
 <br> <br> 
 <h5>License</h5>
 <hr>
