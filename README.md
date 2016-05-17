@@ -1,4 +1,5 @@
 # Bug Tracker
+<h5> A cloud application to store the front-end js errors tracked by <a href="https://github.com/sasidhar678/BugTrackerLibrary"> BugTrackerLibrary</a></h5>
 
 <h5> Prerequisite </h5>
 <ol> 
@@ -17,9 +18,6 @@
 	<li> Navigate back to root directory and run project by running the following command <kbd> node app.js </kbd> </li>
 	<li> Open browser and type <code> "http://localhost:3000" </code> </li>
 </ol>
-
-Check the below link to get Bug Tracker Library to track Front End JavaScript errors <br>
-<a href="https://github.com/sasidhar678/BugTrackerLibrary"> Bug Tracker Library </a>
 
 <br> <br> 
 <h5>License</h5>
