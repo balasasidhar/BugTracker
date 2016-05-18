@@ -11,9 +11,14 @@ module.exports = (function () {
 
         var url = req.originalUrl;
 
-        if (url == "/api/user/register" || url == "/api/user/login" || url == "/api/report")
+        if (url == "/api/user/register" || url == "/api/user/login" || url == "/api/report") {
+            if (url == "/api/report") {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Methods", "POST");
+            }
             next();
-
+        }
+            
         else if (!cookies) {
             res.status(400).json({err: "unauthorized access"})
         } else {

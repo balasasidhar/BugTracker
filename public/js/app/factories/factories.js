@@ -4,7 +4,7 @@
 
 'use strict';
 
-var apiPrefix = "http://bug-tracker.in/api";
+var apiPrefix = "/api";
 
 app.factory('Register', ['$resource', function ($resource) {
     return $resource(apiPrefix + '/user/register');
