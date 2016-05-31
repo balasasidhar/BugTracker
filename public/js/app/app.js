@@ -40,32 +40,74 @@ app.config([
 
         $routeProvider
             .when('/', {
-                templateUrl: 'tmpl/home',
-                controller: 'homePageController'
+                controller: 'homePageController',
+                templateUrl: 'tmpl/home'
             })
             .when('/dashboard', {
                 templateUrl: 'tmpl/dashboard',
-                controller: 'dashboardPageController'
+                controller: 'dashboardPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/new', {
                 templateUrl: 'tmpl/new',
-                controller: 'newProjectsPageController'
+                controller: 'newProjectsPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/edit/:id', {
                 templateUrl: 'tmpl/new',
-                controller: 'editProjectsPageController'
+                controller: 'editProjectsPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/projects', {
                 templateUrl: 'tmpl/projects',
-                controller: 'myProjectsPageController'
+                controller: 'myProjectsPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/reports/:id', {
                 templateUrl: 'tmpl/reports',
-                controller: 'projectReportsPageController'
+                controller: 'projectReportsPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/profile', {
                 templateUrl: 'tmpl/profile',
-                controller: 'myProjectsPageController'
+                controller: 'myProjectsPageController',
+                resolve: {
+                    check: function ($rootScope, $location) {
+                        if (!$rootScope.auth_token) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/logout', {
                 template: '',

@@ -45,7 +45,7 @@ app.controller('loginController', ['$scope', '$rootScope', '$cookies', 'Register
             console.log('making register request');
 
             if ($scope.password !== $scope.confirmPassword) {
-                $scope.error = "Password & Confirm Password must be same.";
+                $scope.register_error = "Password & Confirm Password must be same.";
                 $scope.isMakingAjaxCall = false;
                 return;
             }
@@ -68,8 +68,7 @@ app.controller('loginController', ['$scope', '$rootScope', '$cookies', 'Register
                     $rootScope.auth_token = jwt;
                     $cookies.put('auth_token', jwt);
                     $cookies.putObject("user", {name: response.name, email: response.email, mobile: response.mobile});
-                    $scope.isMakingAjaxCall = false;
-
+                    
                     $scope.isMakingAjaxCall = false;
                     $('#userLoginModalLabel').modal('toggle');
                     window.location.href = "/dashboard";
