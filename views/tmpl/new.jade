@@ -22,7 +22,7 @@
                     .carousel-inner
                         .item.active
                             .card.centerXY#card-one
-                                form(name="projectForm")
+                                form.ng-cloak(name="projectForm")
                                     .form-group(ng-class="{ 'has-error': projectForm.title.$touched && projectForm.title.$invalid }")
                                         label.control-label Project Title
                                         input.form-control(type="text", required, placeholder="Project title", name="title", ng-model="title")
@@ -34,7 +34,7 @@
 
                                     a.btn.btn-primary.btn-block(href="#", ng-click="saveProject()", ng-disabled="projectForm.$invalid") {{buttonText}}
                         .item
-                            .card.centerXY#card-two
+                            .card.centerXY#card-two.ng-cloak
                                 pre
                                     | &ltscript src="https://raw.githubusercontent.com/sasidhar678/BugTrackerLibrary/master/bug_tracker.min.js"&gt &lt/script&gt
                                     | &ltscript src="text/javascript"&gt bugTracker.start("{{project._id}}") &lt/script&gt

@@ -12,7 +12,7 @@
                         .right-container
                             h3 Login
                             .login-container
-                                .login-form
+                                .login-form.ng-cloak
                                     form(name="userLoginForm")
                                         .form-group(ng-class="{ 'has-error': userLoginForm.email.$touched && userLoginForm.email.$invalid }")
                                             input.form-control(type="email", name="email", placeholder="Email", ng-model="email", required)
@@ -58,7 +58,7 @@
                         .right-container
                             h3 Registration
                             .login-container
-                                .login-form
+                                .login-form.ng-cloak
                                     form(name="userRegistrationForm")
                                         .form-group(ng-class="{ 'has-error': userRegistrationForm.name.$touched && userRegistrationForm.name.$invalid }")
                                             input.form-control(type="text", name="name", placeholder="Full Name", ng-model="name", required)

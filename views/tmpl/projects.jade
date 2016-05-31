@@ -2,16 +2,14 @@
    Created by SASi on 14-May-16.
 
 .projects-wrapper
-    .loading(ng-show="!projectsList")
+    .loading.ng-cloak(ng-show="!projectsList")
         img(src="./img/loading_icon.gif")
     .container-fluid
         .row
             .col-lg-2
                 include ../includes/sidebar
-
             .col-lg-8
-
-                .card(ng-repeat="project in projectsList")
+                .card.ng-cloak(ng-repeat="project in projectsList")
                     .commands
                         a.text-success(ng-href="edit/{{project._id}}")
                             i.fa.fa-pencil.icon-left(aria-hidden="true")

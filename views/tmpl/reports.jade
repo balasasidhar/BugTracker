@@ -2,14 +2,14 @@
    Created by SASi on 16-May-16.
 
 .projects-wrapper
-    .loading(ng-show="!reports")
+    .loading.ng-cloak(ng-show="!reports")
         img(src="./img/loading_icon.gif")
     .container-fluid
         .row
             .col-lg-2
                 include ../includes/sidebar
             .col-lg-8
-                .card(ng-repeat="report in reports")
+                .card.ng-cloak(ng-repeat="report in reports")
                     //.commands
                         a.text-warning(ng-href="reports/{{project._id}}")
                             i.fa.fa-bug.icon-left(aria-hidden="true")

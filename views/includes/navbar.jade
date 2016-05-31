@@ -12,10 +12,10 @@ nav.navbar.navbar-default
             li: a(href="getting-started") Getting Started
             //li: a(href="#") API
             //li: a(href="#") Help
-            li: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token",ng-click="showLoginView()") Login
-            li: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token", ng-click="showRegisterView()") Register
+            li.ng-cloak: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token",ng-click="showLoginView()") Login
+            li.ng-cloak: a(href="#", data-toggle="modal", data-target="#userLoginModalLabel", ng-show= "!auth_token", ng-click="showRegisterView()") Register
             li.dropdown
-                a.dropdown-toggle(href="#", ng-show= "auth_token", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+                a.dropdown-toggle.ng-cloak(href="#", ng-show= "auth_token", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
                     |   {{name}}
                     span.caret.icon-right
                 ul.dropdown-menu
