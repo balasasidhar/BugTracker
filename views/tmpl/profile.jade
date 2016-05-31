@@ -7,3 +7,23 @@
             .col-lg-2
                 include ../includes/sidebar
             .col-lg-8
+                .card
+                    .row
+                        .col-lg-8.col-lg-offset-2
+                            table.table.table-hover
+                                thead
+                                    tr
+                                        th(colspan=3) Profile
+                                tbody
+                                    tr
+                                        td Name
+                                        td :
+                                        td {{name}}
+                                    tr
+                                        td Email
+                                        td :
+                                        td {{email}}
+                                    tr
+                                        td Mobile
+                                        td :
+                                        td {{mobile}}

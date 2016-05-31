@@ -109,6 +109,10 @@ app.config([
                     }
                 }
             })
+            .when('/getting-started', {
+                templateUrl: 'tmpl/getting-started',
+                controller: ''
+            })
             .when('/logout', {
                 template: '',
                 controller: 'logoutPageController'

@@ -64,7 +64,7 @@ app.controller('editProjectsPageController', ['$scope', '$rootScope', '$routePar
                 $scope.project.title = $scope.title;
                 $scope.project.description = $scope.description;
 
-                $('.carousel').carousel('next');
+                // $('.carousel').carousel('next');
 
             }, function (err) {
                 console.log(err);

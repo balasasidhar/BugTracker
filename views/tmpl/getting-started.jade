@@ -1,0 +1,58 @@
+//
+   Created by SASi on 31-May-16.
+
+.getting-started
+    .container
+        .row
+            .col-lg-12
+                .header.page-header
+                    h4 Getting started
+
+                .about
+                    h5 About
+                    p.
+                        <b>Bug Tracker</b> is a Simple and Light weight JavaScript Library, developed mainly for
+                        developers, where he/she can track Front-End JS Bugs generated after the website has been
+                        launched.
+                    p.
+                        Normally the users would have to report if there are any errors generated during usage.
+                        Bug Tracker makes it simple for the developers to track and resolve the errors, which were
+                        un-seen during the development.
+
+                .about
+                    h5 Features
+                    ol
+                        li A Simple Web interface where the developer can have multiple projects/apps.
+                        li Easy to integrate.
+                        li Cross browser compatibility.
+                        li Provides detailed description about the error.
+                        li Provides the sequence of events which led to the cause of the error.
+                        li The developer can also choose the way to be notified about the error i.e., mail, slack, trello etc.
+
+                .about
+                    h5 Tutorial
+                    ol
+                        li
+                            span Create a New Project under Dashboard
+                            img(src="./img/step_01.png")
+                        li
+                            span Configure your project with our two lines of code
+                            .centerXY#card-two
+                                pre
+                                    | &ltscript src="https://raw.githubusercontent.com/sasidhar678/BugTrackerLibrary/master/bug_tracker.min.js"&gt &lt/script&gt
+                                    |   &ltscript src="text/javascript"&gt bugTracker.start("API_KEY") &lt/script&gt
+                                p.text-info
+                                    | Copy & paste above code snippet into the &lthead&gt tag of all your html pages.
+                                p.text-warning Please make sure that you add it before all other script tags as well.
+
+                            img(src="./img/step_02.png")
+                        li
+                            span Connect with our service to notify bugs generated at run time.
+                            img(src="./img/step_03.png")
+
+
+
+                .about
+                    h4.text-center.text-success Yay..!!! You are done!
+include ../includes/login-modal
+include ../includes/footer
