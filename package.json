@@ -13,7 +13,7 @@
     "express": "~4.13.1",
     "express-jwt": "^3.3.0",
     "google-auth-library": "^0.9.8",
-    "googleapis": "^6.1.0",
+    "googleapis": "^59.0.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^6.2.0",
     "less-middleware": "1.0.x",
